@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    // $role = Role::find(2);
+    // $role->givePermissionTo('create post', 'delete post');
+
+    // dd($role);
+
     return view('welcome');
 });
 
