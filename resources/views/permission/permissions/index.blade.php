@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="card mb-4">
-        <div class="card-header">Create new Role</div>
+        <div class="card-header">Create new Permission</div>
         <div class="card-body">
-            <form action="{{ route('roles.store') }}" method="post">
+            <form action="{{ route('permissions.store') }}" method="post">
                 @csrf
-                @include('permissions.roles.partials.form-control', ['submit' => 'Create'])
+                @include('permission.permissions.partials.form-control', ['submit' => 'Create'])
             </form>
         </div>
     </div>
 
     <div class="card">
-        <div class="card-header">Table of Role</div>
+        <div class="card-header">Table of Permission</div>
         <div class="card-body">
             <table class="table table-hover">
                 <tr>
@@ -23,14 +23,14 @@
                     <th>Action</th>
                 </tr>
                 <tr>
-                    @foreach ($roles as $index => $role)
+                    @foreach ($permissions as $index => $permission)
                         <tr>
                             <td>{{ $index+1 }}</td>
-                            <td>{{ $role->name }}</td>
-                            <td>{{ $role->guard_name }}</td>
-                            <td>{{ $role->created_at->format('d F Y') }}</td>
+                            <td>{{ $permission->name }}</td>
+                            <td>{{ $permission->guard_name }}</td>
+                            <td>{{ $permission->created_at->format('d F Y') }}</td>
                             <td>
-                                <a href="{{  route('roles.edit', $role) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{  route('permissions.edit', $permission) }}" class="btn btn-primary btn-sm">Edit</a>
                             </td>
                         </tr>
                     @endforeach

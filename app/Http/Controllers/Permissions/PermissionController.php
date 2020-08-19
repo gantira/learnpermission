@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Permissions;
 
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     public function index()
     {
-        $roles = Role::get();
-        $role = new Role();
+        $permissions = Permission::get();
+        $permission = new Permission();
 
-        return view('permission.roles.index', compact('roles', 'role'));
+        return view('permission.permissions.index', compact('permissions', 'permission'));
     }
 
     public function store()
@@ -21,7 +21,7 @@ class RoleController extends Controller
             'name' => 'required'
         ]);
 
-        Role::create([
+        Permission::create([
             'name' => request('name'),
             'guard_name' => request('guard_name') ?? 'web',
         ]);
@@ -29,25 +29,25 @@ class RoleController extends Controller
         return back();
     }
 
-    public function edit(Role $role)
+    public function edit(Permission $permission)
     {
-        return view('permission.roles.edit', [
-            'role' => $role,
+        return view('permission.permissions.edit', [
+            'permission' => $permission,
             'submit' => 'Update'
         ]);
     }
 
-    public function update(Role $role)
+    public function update(Permission $permission)
     {
         request()->validate([
             'name' => 'required'
         ]);
 
-        $role->update([
+        $permission->update([
             'name' => request('name'),
             'guard_name' => request('guard_name') ?? 'web',
         ]);
 
-        return redirect()->route('roles.index');
+        return redirect()->route('permissions.index');
     }
 }
