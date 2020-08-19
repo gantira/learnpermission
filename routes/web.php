@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
@@ -15,8 +16,15 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('/', function () {
-    // $roles = Role::get();
+    // $role = Role::whereName('admin')->first();
+    // dd($role->givePermissionTo('create category'));
+
+
     // $hasRole = auth()->user()->hasAnyRole($roles);
+
+    // $user = User::find(2);
+
+    // $user->assignRole('admin');
 
     // dd($hasRole);
 
@@ -25,7 +33,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => ['role:has.role']], function () {
+Route::group(['middleware' => ['has.role']], function () {
 
     Route::view('dashboard', 'dashboard');
 });

@@ -19,7 +19,6 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
@@ -31,7 +30,7 @@
                     @else
                         @hasanyrole($roles)
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dashboard</a>
+                            <a class="nav-link" href="{{ url('dashboard') }}">Dashboard</a>
                         </li>
                         @endhasanyrole
                         <li class="nav-item dropdown">
