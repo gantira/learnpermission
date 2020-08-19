@@ -35,6 +35,17 @@
         </div>
     @endcan
 
+    @can('assign permission')
+        <div class="mb-4">
+            <small class="d-block text-secondary mb-2 text-uppercase">Role & Permission</small>
+            <div class="list-group">
+                <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action">Roles</a>
+                <a href="#" class="list-group-item list-group-item-action">Permissions</a>
+                <a href="#" class="list-group-item list-group-item-action">Assign Permission</a>
+            </div>
+        </div>
+    @endcan
+
     <div class="mb-4">
         <small class="d-block text-secondary mb-2 text-uppercase">Logout</small>
 

@@ -1,8 +1,6 @@
 <?php
 
-use App\User;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,26 +14,20 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('/', function () {
-    // $role = Role::whereName('admin')->first();
-    // dd($role->givePermissionTo('create category'));
-
-
-    // $hasRole = auth()->user()->hasAnyRole($roles);
-
-    // $user = User::find(2);
-
-    // $user->assignRole('admin');
-
-    // dd($hasRole);
-
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::group(['middleware' => ['has.role']], function () {
+Route::middleware('has.role')->prefix('xyz')->group(function () {
+    Route::view('dashboard', 'dashboard')->name('dashboard');
 
-    Route::view('dashboard', 'dashboard');
+    Route::prefix('role-and-permission')->namespace('Permissions')->group(function() {
+        Route::get('roles', 'RoleController@index')->name('roles.index');
+        Route::post('roles/store', 'RoleController@store')->name('roles.store');
+        Route::get('roles/{role}/edit', 'RoleController@edit')->name('roles.edit');
+        Route::put('roles/{role}', 'RoleController@update')->name('roles.update');
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
