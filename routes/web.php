@@ -15,14 +15,19 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('/', function () {
-    // $role = Role::find(2);
-    // $role->givePermissionTo('create post', 'delete post');
+    // $roles = Role::get();
+    // $hasRole = auth()->user()->hasAnyRole($roles);
 
-    // dd($role);
+    // dd($hasRole);
 
     return view('welcome');
 });
 
 Auth::routes();
+
+Route::group(['middleware' => ['role:has.role']], function () {
+
+    Route::view('dashboard', 'dashboard');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
