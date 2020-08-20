@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,8 @@ Route::middleware('has.role','auth')->prefix('xyz')->group(function () {
     Route::prefix('role-and-permission')->namespace('Permissions')->group(function () {
         Route::get('assignable', 'AssignController@create')->name('assign.create');
         Route::post('assignable', 'AssignController@store');
+        Route::get('assignable/{role}/edit', 'AssignController@edit')->name('assign.edit');
+        Route::put('assignable/{role}', 'AssignController@update')->name('assign.update');
 
         Route::prefix('roles')->group(function () {
             Route::get('', 'RoleController@index')->name('roles.index');
