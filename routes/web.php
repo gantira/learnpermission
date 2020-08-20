@@ -29,6 +29,12 @@ Route::middleware('has.role','auth')->prefix('xyz')->group(function () {
         Route::get('assignable/{role}/edit', 'AssignController@edit')->name('assign.edit');
         Route::put('assignable/{role}', 'AssignController@update')->name('assign.update');
 
+        // User
+        Route::get('assign/user', 'UserController@create')->name('assign.user.create');
+        Route::post('assign/user', 'UserController@store');
+        Route::get('assign/{user}/edit', 'UserController@edit')->name('assign.user.edit');
+        Route::put('assign/{user}/edit', 'UserController@update');
+
         Route::prefix('roles')->group(function () {
             Route::get('', 'RoleController@index')->name('roles.index');
             Route::post('store', 'RoleController@store')->name('roles.store');
