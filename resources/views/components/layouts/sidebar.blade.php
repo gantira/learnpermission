@@ -42,7 +42,17 @@
                 <a href="{{ route('roles.index') }}" class="list-group-item list-group-item-action">Roles</a>
                 <a href="{{ route('permissions.index') }}" class="list-group-item list-group-item-action">Permissions</a>
                 <a href="{{ route('assign.create') }}" class="list-group-item list-group-item-action">Assign Permission</a>
-                <a href="{{ route('assign.user.create') }}" class="list-group-item list-group-item-action">Permission to User</a>
+                <a href="{{ route('assign.user.create') }}" class="list-group-item list-group-item-action">Permission to
+                    User</a>
+            </div>
+        </div>
+    @endcan
+
+    @can('create navigation')
+        <div class="mb-4">
+            <small class="d-block text-secondary mb-2 text-uppercase">Navigation Setup</small>
+            <div class="list-group">
+                <a href="{{ route('navigation.create') }}" class="list-group-item list-group-item-action">Craete new Navigation</a>
             </div>
         </div>
     @endcan
