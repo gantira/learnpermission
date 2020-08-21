@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Layouts;
 
+use App\Navigation;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
@@ -23,6 +24,8 @@ class Sidebar extends Component
      */
     public function render()
     {
-        return view('components.layouts.sidebar');
+        $navigations = Navigation::with('children')->whereNull('url')->get();
+
+        return view('components.layouts.sidebar', compact('navigations'));
     }
 }
