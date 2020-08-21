@@ -60,6 +60,9 @@ Route::middleware('has.role', 'auth')->group(function () {
         Route::get('create', 'NavigationController@create')->name('navigation.create');
         Route::post('create', 'NavigationController@store');
         Route::get('table', 'NavigationController@table')->name('navigation.table');
+        Route::get('{navigation}/edit', 'NavigationController@edit')->name('navigation.edit');
+        Route::put('{navigation}/edit', 'NavigationController@update');
+        Route::delete('{navigation}/delete', 'NavigationController@destroy')->name('navigation.delete');
     });
 });
 

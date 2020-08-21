@@ -10,14 +10,18 @@
                     <th>Name</th>
                     <th>Url</th>
                     <th>Permission Name</th>
+                    <th>Action</th>
                 </tr>
                 <tr>
-                    @foreach ($navigations as $item)
+                    @foreach ($navigations as $navigation)
                         <tr>
-                            <td><strong>{{ $item->parent->name }}</strong></td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->url  ?? 'its a parent'}}</td>
-                            <td>{{ $item->permission_name }}</td>
+                            <td><strong>{{ $navigation->parent->name }}</strong></td>
+                            <td>{{ $navigation->name }}</td>
+                            <td>{{ $navigation->url  ?? 'its a parent'}}</td>
+                            <td>{{ $navigation->permission_name }}</td>
+                            <td>
+                                <a href="{{ route('navigation.edit', $navigation) }}">Edit or Remove</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tr>
